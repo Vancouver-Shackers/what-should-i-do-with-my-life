@@ -1,0 +1,36 @@
+html,
+body,
+#root {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  font-family: "Quicksand", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin theme($theme-name, $bg, $fg) {
+  .#{$theme-name} {
+    height: 100%;
+    .app {
+      height: 100%;
+      width: 100%;
+      background-color: $bg;
+      color: $fg;
+    }
+
+    .title {
+      text-align: center;
+      margin: 0;
+      padding: 10px;
+    }
+
+    .theme-button {
+      display: flex;
+      margin: auto;
+    }
+  }
+}
+
+@include theme(dark, #000000, #ffffff);
+@include theme(light, #ffffff, #000000);
