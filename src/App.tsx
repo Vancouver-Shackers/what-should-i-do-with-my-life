@@ -1,12 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 enum Theme {
   dark = "dark",
   light = "light",
 }
 
+const getTheme = (): Theme => {
+  const theme = window.localStorage.getItem("theme");
+  if (theme === "dark") {
+    return Theme.dark;
+  }
+
+  return Theme.light;
+};
+
 const App = () => {
-  const [theme, setTheme] = useState(Theme.light);
+  const [theme, setTheme] = useState(getTheme());
+
+  useEffect(() => {
+    window.localStorage.setItem("theme", theme);
+  }, [theme]);
 
   return (
     <div className={theme}>
