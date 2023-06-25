@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import Item, { ItemProps } from "./Item";
+import { ItemProps } from "./Item";
+import ItemList from "./ItemList";
 
 enum Theme {
   dark = "dark",
@@ -21,7 +22,7 @@ const getItems = (): ItemProps[] => {
     const items: ItemProps[] = JSON.parse(itemsString);
     return items;
   }
-  return [{ name: "IDEA" }];
+  return [];
 };
 
 const App = () => {
@@ -56,27 +57,14 @@ const App = () => {
               ...items,
               {
                 name: Math.random() > 0.5 ? "idk" : "haha",
+                id: Date.now(),
               },
             ]);
           }}
         >
           new idea
         </button>
-        <div className="item-list-box">
-          <div className="item-list">
-            {items.map((itemProps, i) => (
-              <Item
-                key={i}
-                {...itemProps}
-                delete={() => {
-                  let newItems = [...items];
-                  newItems.splice(i, 1);
-                  setItems(newItems);
-                }}
-              />
-            ))}
-          </div>
-        </div>
+        <ItemList items={items} setItems={setItems} />
       </div>
     </div>
   );
