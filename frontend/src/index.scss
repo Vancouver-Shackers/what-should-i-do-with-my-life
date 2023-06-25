@@ -22,19 +22,52 @@ body,
       color: $fg;
       transition: all 0.2s ease;
       overflow: hidden;
+      background: linear-gradient(
+        -45deg,
+        #ee9448,
+        #f4327d,
+        #35b9de,
+        #ccdc66,
+        #23e190,
+        #0c344e,
+        #334d80
+      );
+      background-size: 800% 800%;
+      animation: move 10s infinite;
+    }
+
+    @keyframes move {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .background-dimmer {
+      width: 100vw;
+      height: 100vh;
+
+      background-color: transparentize($bg, 0.5);
+      transition: background 0.5s ease;
     }
 
     .header-title {
       text-align: center;
       cursor: pointer;
 
-      margin: 20px auto;
+      margin: auto;
+      padding: 20px 0;
       width: fit-content;
 
       text-decoration: underline;
       text-decoration-color: transparent;
 
-      transition: text-decoration-color 0.15s ease-in;
+      transition: text-decoration-color 0.15s ease-in, background 0.2s ease, color 0.2s ease;;
       &:hover {
         text-decoration-color: $fg;
       }
@@ -48,11 +81,13 @@ body,
       text-align: center;
       margin: 0;
       font-size: 4rem;
-      background-color: transparentize($bg, 0.5);
+      background-color: transparentize($bg, 0.3);
       color: $fg;
-      padding: 5px;
+      padding: 5px 15px;
       border-radius: 5px;
       white-space: nowrap;
+      user-select: none;
+      cursor: default;
 
       transition: background 0.2s ease, color 0.2s ease;
     }
@@ -74,35 +109,22 @@ body,
       justify-content: center;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
-      gap: 2px;
+      gap: 3px;
       width: 100%;
       height: 100%;
-      background: linear-gradient(45deg, #ee9448, #f4327d, #35b9de, #23e190);
-      background-size: 400% 400%;
-      animation: move 10s ease infinite;
-    }
-
-    @keyframes move {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
     }
 
     .nav-thing {
       font-size: 3rem;
       text-align: center;
       line-height: 50vh;
-      background-color: $bg;
+      background-color: transparentize($bg, 0.5);
       transition: background-color 0.2s ease, color 0.2s ease;
       &:hover {
-        background-color: darken($bg, 5%);
+        background-color: transparentize(darken($bg, 5%), 0.8);
       }
+      user-select: none;
+      cursor: default;
     }
 
     .theme-button {

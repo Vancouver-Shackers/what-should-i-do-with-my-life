@@ -39,7 +39,7 @@ const IdeaList = (props: {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className="background-dimmer">
       <h1 className="header-title" onClick={() => navigate("/")}>
         What should I do with my life?
       </h1>
