@@ -1,5 +1,16 @@
+import { useNavigate } from "react-router-dom";
+
 const CatPage = () => {
-  return <div>cat</div>;
+  const navigate = useNavigate();
+
+  return (
+    <div>
+      <h1 className="header-title" onClick={() => navigate("/")}>
+        What should I do with my life?
+      </h1>
+      cat
+    </div>
+  );
 };
 
 export default CatPage;

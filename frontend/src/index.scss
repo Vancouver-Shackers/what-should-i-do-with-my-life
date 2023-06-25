@@ -21,34 +21,95 @@ body,
       background-color: $bg;
       color: $fg;
       transition: all 0.2s ease;
+      overflow: hidden;
+    }
+
+    .header-title {
+      text-align: center;
+      cursor: pointer;
+
+      margin: 20px auto;
+      width: fit-content;
+
+      text-decoration: underline;
+      text-decoration-color: transparent;
+
+      transition: text-decoration-color 0.15s ease-in;
+      &:hover {
+        text-decoration-color: $fg;
+      }
     }
 
     .title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -80%);
       text-align: center;
       margin: 0;
-      padding: 10px;
+      font-size: 4rem;
+      background-color: transparentize($bg, 0.5);
+      color: $fg;
+      padding: 5px;
+      border-radius: 5px;
+      white-space: nowrap;
+
+      transition: background 0.2s ease, color 0.2s ease;
     }
 
     button {
       background-color: $bg;
       color: $fg;
+      transition: all 0.2s ease;
+    }
+
+    .home-page {
+      width: 100%;
+      height: 100%;
     }
 
     .nav-stuff {
-      display: flex;
+      display: grid;
       flex-direction: row;
       justify-content: center;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 2px;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, #ee9448, #f4327d, #35b9de, #23e190);
+      background-size: 400% 400%;
+      animation: move 10s ease infinite;
     }
 
-    .nav-button {
-      border: 1px solid $fg3;
-      border-radius: 99px;
-      padding: 2px 8px;
+    @keyframes move {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .nav-thing {
+      font-size: 3rem;
+      text-align: center;
+      line-height: 50vh;
+      background-color: $bg;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      &:hover {
+        background-color: darken($bg, 5%);
+      }
     }
 
     .theme-button {
-      display: flex;
-      margin: auto;
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+
       border: 1px solid $fg3;
       border-radius: 99px;
       padding: 2px 8px;
@@ -113,8 +174,8 @@ body,
     .bored-page {
       padding-top: 25px;
       display: grid;
-      height: 80%;
-      width: 90%;
+      height: 80vh;
+      width: 90vw;
       margin: auto;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr;

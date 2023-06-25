@@ -12,6 +12,7 @@ import {
   SortableContext,
 } from "@dnd-kit/sortable";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import BoredSite from "./BoredSite";
 
 const BoredPage = () => {
@@ -39,25 +40,31 @@ const BoredPage = () => {
   };
 
   const [active, setActive] = useState(1);
+  const navigate = useNavigate();
 
   return (
-    <div className="bored-page">
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCenter}
-        onDragEnd={handleDragEnd}
-      >
-        <SortableContext items={sites} strategy={rectSortingStrategy}>
-          {sites.map((idea) => (
-            <BoredSite
-              key={idea.id}
-              {...idea}
-              active={active === idea.id}
-              setActive={() => setActive(parseInt(idea.id.toString()))}
-            />
-          ))}
-        </SortableContext>
-      </DndContext>
+    <div>
+      <h1 className="header-title" onClick={() => navigate("/")}>
+        What should I do with my life?
+      </h1>
+      <div className="bored-page">
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
+        >
+          <SortableContext items={sites} strategy={rectSortingStrategy}>
+            {sites.map((idea) => (
+              <BoredSite
+                key={idea.id}
+                {...idea}
+                active={active === idea.id}
+                setActive={() => setActive(parseInt(idea.id.toString()))}
+              />
+            ))}
+          </SortableContext>
+        </DndContext>
+      </div>
     </div>
   );
 };

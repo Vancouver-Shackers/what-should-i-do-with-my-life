@@ -6,6 +6,7 @@ import LoginPage from "./LoginPage";
 import BoredPage from "./bored/BoredPage";
 import HelpPage from "./help/HelpPage";
 import CatPage from "./cat/CatPage";
+import HomePage from "./HomePage";
 
 enum Theme {
   dark = "dark",
@@ -42,25 +43,9 @@ const App = () => {
     window.localStorage.setItem("ideas", JSON.stringify(ideas));
   }, [ideas]);
 
-  const navigate = useNavigate();
-
   return (
     <div className={theme}>
       <div className="app">
-        <h1 className="title">What should I do with my life?</h1>
-        <div className="nav-stuff">
-          {["Bored", "Ideas", "Help", "Cat"].map((a, i) => (
-            <button
-              key={i}
-              className="nav-button"
-              onClick={() => {
-                navigate(a.toLowerCase());
-              }}
-            >
-              {a}
-            </button>
-          ))}
-        </div>
         <button
           className="theme-button"
           onClick={() => {
@@ -70,10 +55,7 @@ const App = () => {
           Theme: {theme.at(0)?.toUpperCase() + theme.slice(1)}
         </button>
         <Routes>
-          <Route
-            path="/"
-            element={<IdeaList ideas={ideas} setIdeas={setIdeas} />}
-          />
+          <Route path="/" element={<HomePage />} />
           <Route
             path="/ideas"
             element={<IdeaList ideas={ideas} setIdeas={setIdeas} />}
