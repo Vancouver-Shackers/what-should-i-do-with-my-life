@@ -1,9 +1,7 @@
 import {
-  Active,
   closestCenter,
   DndContext,
   DragEndEvent,
-  KeyboardSensor,
   PointerSensor,
   useSensor,
   useSensors,
@@ -12,7 +10,6 @@ import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import {
   arrayMove,
   SortableContext,
-  sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import Item, { ItemProps } from "./Item";
@@ -24,11 +21,8 @@ const ItemList = (props: {
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
-        distance: 8,
+        distance: {y: 20},
       },
-    }),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
     })
   );
 
@@ -60,6 +54,13 @@ const ItemList = (props: {
                 delete={() => {
                   props.setItems([
                     ...props.items.slice(0, i),
+                    ...props.items.slice(i + 1),
+                  ]);
+                }}
+                setName={(name) => {
+                  props.setItems([
+                    ...props.items.slice(0, i),
+                    { ...props.items[i], name: name },
                     ...props.items.slice(i + 1),
                   ]);
                 }}

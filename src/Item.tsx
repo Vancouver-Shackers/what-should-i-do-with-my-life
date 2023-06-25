@@ -6,6 +6,7 @@ import { CSSProperties } from "react";
 export interface ItemProps {
   name: string;
   delete?: () => void;
+  setName?: (name: string) => void;
   id: UniqueIdentifier;
 }
 
@@ -37,7 +38,20 @@ const Item = (props: ItemProps) => {
       <span className="material-symbols-outlined" onClick={props.delete}>
         close
       </span>{" "}
-      <h2>{props.name}</h2>
+      <h2
+        contentEditable
+        suppressContentEditableWarning
+        onBlur={(e) => {
+          const newName = e.currentTarget.textContent;
+          if (newName && newName !== props.name) {
+            if (props.setName) {
+              props.setName(newName);
+            }
+          }
+        }}
+      >
+        {props.name}
+      </h2>
     </div>
   );
 };
