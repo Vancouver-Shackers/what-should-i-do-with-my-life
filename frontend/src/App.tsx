@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { ItemProps } from "./Item";
 import ItemList from "./ItemList";
+import LoginPage from "./LoginPage";
+import BoredPage from "./sections/BoredPage";
 
 enum Theme {
   dark = "dark",
@@ -37,10 +40,25 @@ const App = () => {
     window.localStorage.setItem("items", JSON.stringify(items));
   }, [items]);
 
+  const navigate = useNavigate();
+
   return (
     <div className={theme}>
       <div className="app">
         <h1 className="title">What should I do with my life?</h1>
+        <div className="nav-stuff">
+          {["Bored", "Ideas"].map((a, i) => (
+            <button
+              key={i}
+              className="nav-button"
+              onClick={() => {
+                navigate(a.toLowerCase());
+              }}
+            >
+              {a}
+            </button>
+          ))}
+        </div>
         <button
           className="theme-button"
           onClick={() => {
@@ -49,7 +67,18 @@ const App = () => {
         >
           Theme: {theme.at(0)?.toUpperCase() + theme.slice(1)}
         </button>
-        <ItemList items={items} setItems={setItems} />
+        <Routes>
+          <Route
+            path="/"
+            element={<ItemList items={items} setItems={setItems} />}
+          />
+          <Route
+            path="/ideas"
+            element={<ItemList items={items} setItems={setItems} />}
+          />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/bored" element={<BoredPage />} />
+        </Routes>
       </div>
     </div>
   );

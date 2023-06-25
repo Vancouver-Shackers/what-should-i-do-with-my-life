@@ -1,7 +1,8 @@
 import { UniqueIdentifier } from "@dnd-kit/core";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { CSSProperties, useState } from "react";
+import autoAnimate from "@formkit/auto-animate";
+import { CSSProperties, useEffect, useRef, useState } from "react";
 
 export interface ItemProps {
   name: string;
@@ -28,6 +29,12 @@ const Item = (props: ItemProps) => {
   };
 
   const [expand, setExpand] = useState(false);
+  const parent = useRef(null);
+
+  useEffect(() => {
+    parent.current &&
+      autoAnimate(parent.current, { duration: 200, easing: "ease" });
+  }, [parent]);
 
   return (
     <div
@@ -60,13 +67,16 @@ const Item = (props: ItemProps) => {
       >
         {expand ? "expand_less" : "expand_more"}
       </span>
-      {!expand ? null : (
-        <div>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et, eos quis
-          blanditiis nam quaerat, labore quam rem nihil voluptatibus modi vitae
-          quasi accusamus dignissimos sunt iusto repudiandae maiores quod illum!
-        </div>
-      )}
+      <div ref={parent}>
+        {!expand ? null : (
+          <div>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et, eos
+            quis blanditiis nam quaerat, labore quam rem nihil voluptatibus modi
+            vitae quasi accusamus dignissimos sunt iusto repudiandae maiores
+            quod illum!
+          </div>
+        )}
+      </div>
     </div>
   );
 };
