@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/what-should-i-do-with-my-life/static/css/main.1ecf9543.css",
+    "main.js": "/what-should-i-do-with-my-life/static/js/main.35451420.js",
+    "index.html": "/what-should-i-do-with-my-life/index.html",
+    "main.1ecf9543.css.map": "/what-should-i-do-with-my-life/static/css/main.1ecf9543.css.map",
+    "main.35451420.js.map": "/what-should-i-do-with-my-life/static/js/main.35451420.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1ecf9543.css",
+    "static/js/main.35451420.js"
+  ]
+}
