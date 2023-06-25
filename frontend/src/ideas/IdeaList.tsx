@@ -12,11 +12,11 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import Item, { ItemProps } from "./Item";
+import Idea, { IdeaProps } from "./Idea";
 
-const ItemList = (props: {
-  items: ItemProps[];
-  setItems: (items: ItemProps[]) => void;
+const IdeaList = (props: {
+  ideas: IdeaProps[];
+  setIdeas: (ideas: IdeaProps[]) => void;
 }) => {
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -28,32 +28,32 @@ const ItemList = (props: {
 
   const handleDragEnd = ({ active, over }: DragEndEvent) => {
     if (over && active.id !== over.id) {
-      const activeIndex = props.items.findIndex(({ id }) => id === active.id);
-      const overIndex = props.items.findIndex(({ id }) => id === over.id);
+      const activeIndex = props.ideas.findIndex(({ id }) => id === active.id);
+      const overIndex = props.ideas.findIndex(({ id }) => id === over.id);
 
-      props.setItems(arrayMove(props.items, activeIndex, overIndex));
+      props.setIdeas(arrayMove(props.ideas, activeIndex, overIndex));
     }
   };
 
   return (
-    <div className="item-list-box">
+    <div className="idea-list-box">
       <div
-        className="item new-idea"
+        className="idea new-idea"
         style={{ cursor: "pointer" }}
         onClick={() => {
-          props.setItems([
+          props.setIdeas([
             {
               name: Math.random() > 0.5 ? "idk" : "haha",
               id: Date.now(),
             },
-            ...props.items,
+            ...props.ideas,
           ]);
         }}
       >
         <span className="material-symbols-outlined">add_box</span>{" "}
         <h2>New Idea!</h2>
       </div>
-      <div className="item-list">
+      <div className="idea-list">
         <DndContext
           modifiers={[restrictToVerticalAxis]}
           sensors={sensors}
@@ -61,24 +61,24 @@ const ItemList = (props: {
           onDragEnd={handleDragEnd}
         >
           <SortableContext
-            items={props.items}
+            items={props.ideas}
             strategy={verticalListSortingStrategy}
           >
-            {props.items.map((itemProps, i) => (
-              <Item
-                key={itemProps.id}
-                {...itemProps}
+            {props.ideas.map((idea, i) => (
+              <Idea
+                key={idea.id}
+                {...idea}
                 delete={() => {
-                  props.setItems([
-                    ...props.items.slice(0, i),
-                    ...props.items.slice(i + 1),
+                  props.setIdeas([
+                    ...props.ideas.slice(0, i),
+                    ...props.ideas.slice(i + 1),
                   ]);
                 }}
                 setName={(name) => {
-                  props.setItems([
-                    ...props.items.slice(0, i),
-                    { ...props.items[i], name: name },
-                    ...props.items.slice(i + 1),
+                  props.setIdeas([
+                    ...props.ideas.slice(0, i),
+                    { ...props.ideas[i], name: name },
+                    ...props.ideas.slice(i + 1),
                   ]);
                 }}
               />
@@ -90,4 +90,4 @@ const ItemList = (props: {
   );
 };
 
-export default ItemList;
+export default IdeaList;

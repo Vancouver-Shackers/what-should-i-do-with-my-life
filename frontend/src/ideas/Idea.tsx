@@ -4,14 +4,14 @@ import { CSS } from "@dnd-kit/utilities";
 import autoAnimate from "@formkit/auto-animate";
 import { CSSProperties, useEffect, useRef, useState } from "react";
 
-export interface ItemProps {
+export interface IdeaProps {
   name: string;
   delete?: () => void;
   setName?: (name: string) => void;
   id: UniqueIdentifier;
 }
 
-const Item = (props: ItemProps) => {
+const Idea = (props: IdeaProps) => {
   const {
     attributes,
     isDragging,
@@ -38,7 +38,7 @@ const Item = (props: ItemProps) => {
 
   return (
     <div
-      className="item"
+      className="idea"
       ref={setNodeRef}
       style={style}
       {...attributes}
@@ -81,4 +81,4 @@ const Item = (props: ItemProps) => {
   );
 };
 
-export default Item;
+export default Idea;

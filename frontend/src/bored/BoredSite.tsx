@@ -1,7 +1,7 @@
 import { UniqueIdentifier } from "@dnd-kit/core";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { CSSProperties, useEffect, useRef, useState } from "react";
+import { CSSProperties } from "react";
 
 interface BoredSiteProps {
   id: UniqueIdentifier;

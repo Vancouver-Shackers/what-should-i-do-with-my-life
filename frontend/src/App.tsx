@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { ItemProps } from "./Item";
-import ItemList from "./ItemList";
+import { IdeaProps } from "./ideas/Idea";
+import IdeaList from "./ideas/IdeaList";
 import LoginPage from "./LoginPage";
-import BoredPage from "./sections/BoredPage";
+import BoredPage from "./bored/BoredPage";
+import HelpPage from "./help/HelpPage";
+import CatPage from "./cat/CatPage";
 
 enum Theme {
   dark = "dark",
@@ -19,26 +21,26 @@ const getTheme = (): Theme => {
   return Theme.light;
 };
 
-const getItems = (): ItemProps[] => {
-  const itemsString = window.localStorage.getItem("items");
-  if (itemsString) {
-    const items: ItemProps[] = JSON.parse(itemsString);
-    return items;
+const getIdeas = (): IdeaProps[] => {
+  const ideaString = window.localStorage.getItem("ideas");
+  if (ideaString) {
+    const ideas: IdeaProps[] = JSON.parse(ideaString);
+    return ideas;
   }
   return [];
 };
 
 const App = () => {
   const [theme, setTheme] = useState(getTheme());
-  const [items, setItems] = useState<ItemProps[]>(getItems());
+  const [ideas, setIdeas] = useState<IdeaProps[]>(getIdeas());
 
   useEffect(() => {
     window.localStorage.setItem("theme", theme);
   }, [theme]);
 
   useEffect(() => {
-    window.localStorage.setItem("items", JSON.stringify(items));
-  }, [items]);
+    window.localStorage.setItem("ideas", JSON.stringify(ideas));
+  }, [ideas]);
 
   const navigate = useNavigate();
 
@@ -47,7 +49,7 @@ const App = () => {
       <div className="app">
         <h1 className="title">What should I do with my life?</h1>
         <div className="nav-stuff">
-          {["Bored", "Ideas"].map((a, i) => (
+          {["Bored", "Ideas", "Help", "Cat"].map((a, i) => (
             <button
               key={i}
               className="nav-button"
@@ -70,14 +72,16 @@ const App = () => {
         <Routes>
           <Route
             path="/"
-            element={<ItemList items={items} setItems={setItems} />}
+            element={<IdeaList ideas={ideas} setIdeas={setIdeas} />}
           />
           <Route
             path="/ideas"
-            element={<ItemList items={items} setItems={setItems} />}
+            element={<IdeaList ideas={ideas} setIdeas={setIdeas} />}
           />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/bored" element={<BoredPage />} />
+          <Route path="/help" element={<HelpPage />} />
+          <Route path="/cat" element={<CatPage />} />
         </Routes>
       </div>
     </div>

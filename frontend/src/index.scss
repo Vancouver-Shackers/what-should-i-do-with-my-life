@@ -54,7 +54,7 @@ body,
       padding: 2px 8px;
     }
 
-    .item-list-box {
+    .idea-list-box {
       padding: 3px;
       width: 60%;
       border-radius: 10px;
@@ -63,7 +63,7 @@ body,
       margin-top: 10px;
     }
 
-    .item-list {
+    .idea-list {
       overflow: hidden;
       max-height: 75vh;
       overflow-y: auto;
@@ -71,7 +71,7 @@ body,
       flex-direction: column;
     }
 
-    .item {
+    .idea {
       border-bottom: 1px solid $fg3;
       &:nth-last-child(3) {
         border-bottom: none;
