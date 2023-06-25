@@ -1,7 +1,7 @@
 import { UniqueIdentifier } from "@dnd-kit/core";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { CSSProperties } from "react";
+import { CSSProperties, useState } from "react";
 
 export interface ItemProps {
   name: string;
@@ -26,6 +26,8 @@ const Item = (props: ItemProps) => {
     zIndex: isDragging ? 99 : 0,
     transition,
   };
+
+  const [expand, setExpand] = useState(false);
 
   return (
     <div
@@ -52,6 +54,12 @@ const Item = (props: ItemProps) => {
       >
         {props.name}
       </h2>
+      <span
+        className="material-symbols-outlined expand"
+        onClick={() => setExpand(!expand)}
+      >
+        {expand ? "expand_more" : "expand_less"}
+      </span>
     </div>
   );
 };
