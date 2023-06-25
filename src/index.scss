@@ -37,21 +37,18 @@ body,
     .theme-button {
       display: flex;
       margin: auto;
-    }
-
-    .new-idea-button {
-      display: flex;
-      margin: auto;
-      font-size: 1.2rem;
+      border: 1px solid $fg;
+      border-radius: 99px;
+      padding: 2px 8px;
     }
 
     .item-list-box {
       padding: 3px;
       width: 60%;
-      margin-top: 10px;
       border-radius: 10px;
       border: 1px solid $fg;
       margin: auto;
+      margin-top: 10px;
     }
 
     .item-list {
@@ -64,15 +61,12 @@ body,
 
     .item {
       border-bottom: 1px solid $fg;
-      transition: background-color 0.2s ease, color 0.2s ease;;
+      &:nth-last-child(3) {
+        border-bottom: none;
+      }
+      transition: background-color 0.2s ease, color 0.2s ease;
       &:hover {
         background-color: darken($fg2, 3%);
-      }
-      &:nth-child(even) {
-        background-color: $bg;
-        &:hover {
-          background-color: darken($bg, 2%);
-        }
       }
       padding: 10px;
       display: block;
@@ -85,6 +79,12 @@ body,
       .material-symbols-outlined {
         cursor: pointer;
       }
+    }
+
+    .new-idea {
+      border-bottom: 3px solid $fg;
+      background-color: lighten($fg2, 5%);
+      user-select: none;
     }
 
     ::-webkit-scrollbar {
@@ -102,5 +102,5 @@ body,
   }
 }
 
-@include theme(dark, #0a0d0f, #ffffea, #131923);
+@include theme(dark, #0a0d0f, #fbfaed, #131923);
 @include theme(light, #fbfcf9, #001508, #eef3ec);

@@ -49,21 +49,6 @@ const App = () => {
         >
           Theme: {theme.at(0)?.toUpperCase() + theme.slice(1)}
         </button>
-
-        <button
-          className="new-idea-button"
-          onClick={() => {
-            setItems([
-              ...items,
-              {
-                name: Math.random() > 0.5 ? "idk" : "haha",
-                id: Date.now(),
-              },
-            ]);
-          }}
-        >
-          new idea
-        </button>
         <ItemList items={items} setItems={setItems} />
       </div>
     </div>
