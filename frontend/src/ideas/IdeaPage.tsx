@@ -12,10 +12,12 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import autoAnimate from "@formkit/auto-animate";
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Idea, { IdeaProps } from "./Idea";
 
-const IdeaList = (props: {
+const IdeaPage = (props: {
   ideas: IdeaProps[];
   setIdeas: (ideas: IdeaProps[]) => void;
 }) => {
@@ -98,4 +100,4 @@ const IdeaList = (props: {
   );
 };
 
-export default IdeaList;
+export default IdeaPage;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { IdeaProps } from "./ideas/Idea";
-import IdeaList from "./ideas/IdeaList";
+import IdeaPage from "./ideas/IdeaPage";
 import LoginPage from "./LoginPage";
 import BoredPage from "./bored/BoredPage";
 import HelpPage from "./help/HelpPage";
@@ -58,7 +58,7 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route
             path="/ideas"
-            element={<IdeaList ideas={ideas} setIdeas={setIdeas} />}
+            element={<IdeaPage ideas={ideas} setIdeas={setIdeas} />}
           />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/bored" element={<BoredPage />} />
