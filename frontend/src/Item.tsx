@@ -58,8 +58,15 @@ const Item = (props: ItemProps) => {
         className="material-symbols-outlined expand"
         onClick={() => setExpand(!expand)}
       >
-        {expand ? "expand_more" : "expand_less"}
+        {expand ? "expand_less" : "expand_more"}
       </span>
+      {!expand ? null : (
+        <div>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et, eos quis
+          blanditiis nam quaerat, labore quam rem nihil voluptatibus modi vitae
+          quasi accusamus dignissimos sunt iusto repudiandae maiores quod illum!
+        </div>
+      )}
     </div>
   );
 };
