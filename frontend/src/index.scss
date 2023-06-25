@@ -12,7 +12,7 @@ body,
   -moz-osx-font-smoothing: grayscale;
 }
 
-@mixin theme($theme-name, $bg, $fg, $fg2) {
+@mixin theme($theme-name, $bg, $fg, $fg2, $fg3) {
   .#{$theme-name} {
     height: 100%;
     .app {
@@ -41,7 +41,7 @@ body,
     }
 
     .nav-button {
-      border: 1px solid $fg;
+      border: 1px solid $fg3;
       border-radius: 99px;
       padding: 2px 8px;
     }
@@ -49,7 +49,7 @@ body,
     .theme-button {
       display: flex;
       margin: auto;
-      border: 1px solid $fg;
+      border: 1px solid $fg3;
       border-radius: 99px;
       padding: 2px 8px;
     }
@@ -58,7 +58,7 @@ body,
       padding: 3px;
       width: 60%;
       border-radius: 10px;
-      border: 1px solid $fg;
+      border: 1px solid $fg3;
       margin: auto;
       margin-top: 10px;
     }
@@ -72,7 +72,7 @@ body,
     }
 
     .item {
-      border-bottom: 1px solid $fg;
+      border-bottom: 1px solid $fg3;
       &:nth-last-child(3) {
         border-bottom: none;
       }
@@ -98,7 +98,7 @@ body,
     }
 
     .new-idea {
-      border-bottom: 3px solid $fg;
+      border-bottom: 3px solid $fg3;
       background-color: lighten($fg2, 5%);
       user-select: none;
     }
@@ -166,5 +166,5 @@ body,
   }
 }
 
-@include theme(dark, #0a0d0f, #fbfaed, #131923);
-@include theme(light, #fbfcf9, #001508, #eef3ec);
+@include theme(dark, #0a0d0f, #fbfaed, #131923, #69543d);
+@include theme(light, #fbfcf9, #001508, #eef3ec, #8f6875);
