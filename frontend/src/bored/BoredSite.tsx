@@ -7,7 +7,6 @@ interface BoredSiteProps {
   id: UniqueIdentifier;
   url: string;
   active: boolean;
-  setActive: () => void;
 }
 
 const BoredSite = (props: BoredSiteProps) => {
@@ -36,9 +35,7 @@ const BoredSite = (props: BoredSiteProps) => {
       {...attributes}
       {...listeners}
     >
-      {!props.active && (
-        <div onClick={() => props.setActive()}>Click To Focus</div>
-      )}
+      {!props.active && <div>Drag To Focus</div>}
       <iframe src={props.url} title="description" />
     </div>
   );

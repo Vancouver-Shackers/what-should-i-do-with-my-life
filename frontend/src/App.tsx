@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { IdeaProps } from "./ideas/Idea";
 import IdeaPage from "./ideas/IdeaPage";
 import LoginPage from "./LoginPage";

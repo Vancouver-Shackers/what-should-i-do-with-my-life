@@ -67,7 +67,8 @@ body,
       text-decoration: underline;
       text-decoration-color: transparent;
 
-      transition: text-decoration-color 0.15s ease-in, background 0.2s ease, color 0.2s ease;;
+      transition: text-decoration-color 0.15s ease-in, background 0.2s ease,
+        color 0.2s ease;
       &:hover {
         text-decoration-color: $fg;
       }
@@ -199,8 +200,8 @@ body,
       height: 80vh;
       width: 90vw;
       margin: auto;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 4fr 1fr;
 
       iframe {
         margin: 0;
@@ -212,8 +213,13 @@ body,
 
     .bored-site {
       position: relative;
+      &:first-of-type {
+        background-color: white;
+        grid-column-start: 3 span;
+      }
+
       div {
-        line-height: 40vh;
+        line-height: 16vh;
         z-index: 1;
         position: absolute;
         top: 0;

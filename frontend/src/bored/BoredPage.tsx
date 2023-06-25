@@ -39,7 +39,6 @@ const BoredPage = () => {
     }
   };
 
-  const [active, setActive] = useState(1);
   const navigate = useNavigate();
 
   return (
@@ -54,12 +53,11 @@ const BoredPage = () => {
           onDragEnd={handleDragEnd}
         >
           <SortableContext items={sites} strategy={rectSortingStrategy}>
-            {sites.map((idea) => (
+            {sites.map((idea, i) => (
               <BoredSite
                 key={idea.id}
                 {...idea}
-                active={active === idea.id}
-                setActive={() => setActive(parseInt(idea.id.toString()))}
+                active={i === 0}
               />
             ))}
           </SortableContext>
