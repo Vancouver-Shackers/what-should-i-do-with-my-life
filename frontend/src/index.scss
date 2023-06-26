@@ -199,6 +199,28 @@ body,
       border-bottom: 3px solid $fg3;
       background-color: lighten($fg2, 5%);
       user-select: none;
+      display: grid;
+      grid-template-columns: 8fr 1fr;
+      span {
+        &:nth-of-type(2) {
+          text-align: right;
+        }
+      }
+      div {
+        padding: 10px;
+        h3 {
+          margin: 0;
+          padding: 0 0 10px 10px;
+        }
+        div {
+          padding: 0;
+          display: grid;
+          grid-template-columns: 1fr 8fr;
+          input {
+            font-size: 1.15rem;
+          }
+        }
+      }
     }
 
     .login-page {

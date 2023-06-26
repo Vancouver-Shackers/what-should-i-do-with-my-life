@@ -12,6 +12,8 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import autoAnimate from "@formkit/auto-animate";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchIdea } from "../apiFunctions";
 import Idea, { IdeaProps } from "./Idea";
@@ -39,8 +41,8 @@ const IdeaPage = (props: {
 
   const navigate = useNavigate();
 
-  const createNewIdeasAI = async () => {
-    const idea = await fetchIdea();
+  const createNewIdeasAI = async (theme: string) => {
+    const idea = await fetchIdea(theme);
     const ideas = idea.split("\n");
     const ideasArr: IdeaProps[] = ideas.map((a, i) => ({
       name: a,
@@ -50,28 +52,70 @@ const IdeaPage = (props: {
     props.setIdeas([...ideasArr, ...props.ideas]);
   };
 
+  const [expand, setExpand] = useState(false);
+  const parent = useRef(null);
+  const input = useRef<null | HTMLInputElement>(null);
+  const [inputActive, setInputActive] = useState(false);
+
+  useEffect(() => {
+    parent.current &&
+      autoAnimate(parent.current, { duration: 200, easing: "ease" });
+  }, [parent]);
+
+  const handleCreateNewIdea = async () => {
+    if (inputActive && expand && input.current) {
+      createNewIdeasAI(input.current.value);
+    }
+    props.setIdeas([
+      {
+        name: "idea",
+        content: "Put notes about this idea here",
+        id: Date.now(),
+      },
+      ...props.ideas,
+    ]);
+  };
+
   return (
     <div className="background-dimmer">
       <h1 className="header-title" onClick={() => navigate("/")}>
         What should I do with my life?
       </h1>
       <div className="idea-list-box">
-        <div
-          className="idea new-idea"
-          style={{ cursor: "pointer" }}
-          onClick={async () => {
-            props.setIdeas([
-              {
-                name: "idea",
-                content: "Put notes about this idea here",
-                id: Date.now(),
-              },
-              ...props.ideas,
-            ]);
-          }}
-        >
-          <span className="material-symbols-outlined">add_box</span>{" "}
-          <h2>New Idea!</h2>
+        <div className="idea new-idea" ref={parent}>
+          <span
+            style={{ cursor: "pointer" }}
+            onClick={async () => {
+              handleCreateNewIdea();
+            }}
+          >
+            <span className="material-symbols-outlined">add_box</span>{" "}
+            <h2>New Idea!</h2>
+          </span>
+          <span
+            className="material-symbols-outlined expand"
+            onClick={() => setExpand(!expand)}
+          >
+            {expand ? "expand_less" : "expand_more"}
+          </span>
+          {expand && (
+            <div>
+              <h3>AI Generated Ideas</h3>
+              <div>
+                <input
+                  type="checkbox"
+                  checked={inputActive}
+                  onChange={(e) => setInputActive(e.target.checked)}
+                />
+                <input
+                  type="text"
+                  ref={input}
+                  disabled={!inputActive}
+                  placeholder="Enter theme for an idea. (eg. games)"
+                />
+              </div>
+            </div>
+          )}
         </div>
         <div className="idea-list">
           <DndContext
