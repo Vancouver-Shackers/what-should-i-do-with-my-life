@@ -1,3 +1,5 @@
+$breakpoint-phone: 480px;
+
 html,
 body,
 #root {
@@ -73,13 +75,17 @@ body,
       &:hover {
         text-decoration-color: $fg;
       }
+      @media only screen and (max-width: $breakpoint-phone) {
+        font-size: 1.55rem;
+        padding-bottom: 10px;
+      }
     }
 
     .title {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -80%);
+      transform: translate(-50%, -50%);
       text-align: center;
       margin: 0;
       font-size: 4rem;
@@ -92,6 +98,13 @@ body,
       cursor: default;
 
       transition: background 0.2s ease, color 0.2s ease, text-shadow 0.2s ease;
+      @media only screen and (max-width: 1000px) {
+        white-space: initial;
+        font-size: 3.5rem;
+      }
+      @media only screen and (max-width: $breakpoint-phone) {
+        font-size: 2.75rem;
+      }
     }
 
     button {
@@ -149,6 +162,9 @@ body,
       border: 1px solid $fg3;
       margin: auto;
       margin-top: 10px;
+      @media only screen and (max-width: $breakpoint-phone) {
+        width: 85%;
+      }
     }
 
     .idea-list {
@@ -174,7 +190,10 @@ body,
       h2 {
         display: inline;
         margin: 0;
-        font-size: 2.25rem;
+        font-size: calc(1.25rem + 1vw);
+        @media only screen and (max-width: $breakpoint-phone) {
+          font-size: 1.25rem;
+        }
       }
       .material-symbols-outlined {
         cursor: pointer;
@@ -201,6 +220,9 @@ body,
       user-select: none;
       display: grid;
       grid-template-columns: 8fr 1fr;
+      h2 {
+        font-size: 2.25rem;
+      }
       span {
         &:nth-of-type(2) {
           text-align: right;
