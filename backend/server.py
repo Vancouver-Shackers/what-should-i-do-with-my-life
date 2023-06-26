@@ -9,7 +9,7 @@ load_dotenv()
 
 openai.api_key = os.getenv('API_KEY')
 
-system_msg = 'You are a helpful assistant'
+system_msg = 'give me 11 ideas someone could do. end each line/idea with a semicolon'
 
 app = Flask(__name__)
 
@@ -22,11 +22,17 @@ def giveideas():
     if useridea == '':
         return
     else:
-        useridea = "Give me 11 ideas related to " + \
-            useridea + ", ending each line with a semicolon."
+        useridea = "ideas related to " + useridea
         response = openai.ChatCompletion.create(model="gpt-3.5-turbo",
-                                                messages=[{"role": "system", "content": system_msg},
-                                                          {"role": "user", "content": useridea}])
+                                                messages=[{
+                                                    "role": "system",
+                                                    "content": system_msg
+                                                }, {
+                                                    "role": "user",
+                                                    "content": useridea
+                                                }])
+
+        print(response)
 
         botideas = response["choices"][0]["message"]["content"]
         botideas = botideas[botideas.find("1."):-1]
