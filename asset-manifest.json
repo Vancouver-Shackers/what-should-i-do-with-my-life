@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/what-should-i-do-with-my-life/static/css/main.fea3c65d.css",
-    "main.js": "/what-should-i-do-with-my-life/static/js/main.9b364260.js",
+    "main.css": "/what-should-i-do-with-my-life/static/css/main.2a405882.css",
+    "main.js": "/what-should-i-do-with-my-life/static/js/main.13e2d185.js",
     "index.html": "/what-should-i-do-with-my-life/index.html",
-    "main.fea3c65d.css.map": "/what-should-i-do-with-my-life/static/css/main.fea3c65d.css.map",
-    "main.9b364260.js.map": "/what-should-i-do-with-my-life/static/js/main.9b364260.js.map"
+    "main.2a405882.css.map": "/what-should-i-do-with-my-life/static/css/main.2a405882.css.map",
+    "main.13e2d185.js.map": "/what-should-i-do-with-my-life/static/js/main.13e2d185.js.map"
   },
   "entrypoints": [
-    "static/css/main.fea3c65d.css",
-    "static/js/main.9b364260.js"
+    "static/css/main.2a405882.css",
+    "static/js/main.13e2d185.js"
   ]
 }
