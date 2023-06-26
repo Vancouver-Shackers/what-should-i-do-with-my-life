@@ -12,9 +12,8 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import autoAnimate from "@formkit/auto-animate";
-import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { fetchIdea } from "../apiFunctions";
 import Idea, { IdeaProps } from "./Idea";
 
 const IdeaPage = (props: {
@@ -40,6 +39,17 @@ const IdeaPage = (props: {
 
   const navigate = useNavigate();
 
+  const createNewIdeasAI = async () => {
+    const idea = await fetchIdea();
+    const ideas = idea.split("\n");
+    const ideasArr: IdeaProps[] = ideas.map((a, i) => ({
+      name: a,
+      id: Date.now() + i,
+      content: "Put notes about this idea here",
+    }));
+    props.setIdeas([...ideasArr, ...props.ideas]);
+  };
+
   return (
     <div className="background-dimmer">
       <h1 className="header-title" onClick={() => navigate("/")}>
@@ -49,10 +59,11 @@ const IdeaPage = (props: {
         <div
           className="idea new-idea"
           style={{ cursor: "pointer" }}
-          onClick={() => {
+          onClick={async () => {
             props.setIdeas([
               {
-                name: Math.random() > 0.5 ? "idk" : "haha",
+                name: "idea",
+                content: "Put notes about this idea here",
                 id: Date.now(),
               },
               ...props.ideas,
@@ -87,6 +98,13 @@ const IdeaPage = (props: {
                     props.setIdeas([
                       ...props.ideas.slice(0, i),
                       { ...props.ideas[i], name: name },
+                      ...props.ideas.slice(i + 1),
+                    ]);
+                  }}
+                  setContent={(content) => {
+                    props.setIdeas([
+                      ...props.ideas.slice(0, i),
+                      { ...props.ideas[i], content: content },
                       ...props.ideas.slice(i + 1),
                     ]);
                   }}

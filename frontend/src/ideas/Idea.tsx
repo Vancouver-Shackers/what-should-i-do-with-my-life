@@ -6,8 +6,10 @@ import { CSSProperties, useEffect, useRef, useState } from "react";
 
 export interface IdeaProps {
   name: string;
+  content: string;
   delete?: () => void;
   setName?: (name: string) => void;
+  setContent?: (content: string) => void;
   id: UniqueIdentifier;
 }
 
@@ -68,12 +70,23 @@ const Idea = (props: IdeaProps) => {
         {expand ? "expand_less" : "expand_more"}
       </span>
       <div ref={parent}>
-        {!expand ? null : (
-          <div>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et, eos
-            quis blanditiis nam quaerat, labore quam rem nihil voluptatibus modi
-            vitae quasi accusamus dignissimos sunt iusto repudiandae maiores
-            quod illum!
+        {expand && (
+          <div
+            role={"textbox"}
+            contentEditable
+            suppressContentEditableWarning
+            onBlur={(e) => {
+              /* const newContent = e.currentTarget.value; */
+              const newContent = e.currentTarget.textContent;
+              if (newContent && newContent !== props.content) {
+                if (props.setContent) {
+                  console.log(newContent);
+                  props.setContent(newContent);
+                }
+              }
+            }}
+          >
+            {props.content}
           </div>
         )}
       </div>

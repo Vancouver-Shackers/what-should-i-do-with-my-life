@@ -29,7 +29,7 @@ body,
         #35b9de,
         #ccdc66,
         #23e190,
-        #0c344e,
+        #80805b,
         #334d80
       );
       background-size: 800% 800%;
@@ -68,7 +68,8 @@ body,
       text-decoration-color: transparent;
 
       transition: text-decoration-color 0.15s ease-in, background 0.2s ease,
-        color 0.2s ease;
+        color 0.2s ease, text-shadow 0.2s ease;
+      text-shadow: transparentize($fg, 0.2) 0 0 8px;
       &:hover {
         text-decoration-color: $fg;
       }
@@ -90,7 +91,8 @@ body,
       user-select: none;
       cursor: default;
 
-      transition: background 0.2s ease, color 0.2s ease;
+      text-shadow: transparentize($fg, 0.5) 0 0 8px;
+      transition: background 0.2s ease, color 0.2s ease, text-shadow 0.2s ease;
     }
 
     button {
@@ -117,10 +119,12 @@ body,
 
     .nav-thing {
       font-size: 3rem;
+      text-shadow: $fg 0 0 10px;
       text-align: center;
       line-height: 50vh;
       background-color: transparentize($bg, 0.5);
-      transition: background-color 0.2s ease, color 0.2s ease;
+      transition: background-color 0.2s ease, color 0.2s ease,
+        text-shadow 0.2s ease;
       &:hover {
         background-color: transparentize(darken($bg, 5%), 0.8);
       }
@@ -178,6 +182,16 @@ body,
       .expand {
         float: right;
         font-size: 2.75rem;
+      }
+      textarea {
+        width: 100%;
+        resize: none;
+        background-color: $fg2;
+        color: $fg;
+        border: none;
+
+        height: auto;
+        overflow: auto;
       }
     }
 
