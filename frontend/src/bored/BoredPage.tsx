@@ -18,6 +18,7 @@ const BoredPage = () => {
     "https://weirdorconfusing.com/",
     "https://mondrianandme.com/",
     "https://onesquareminesweeper.com/",
+    "https://nycrat.github.io/photo-gallery/",
     "https://floatingqrcode.com/",
     "https://sliding.toys/",
     "https://alwaysjudgeabookbyitscover.com/",
@@ -69,9 +70,8 @@ const BoredPage = () => {
           {sites.map(
             (site, i) =>
               i !== 0 && (
-                <div>
+                <div key={i}>
                   <BoredSite
-                    key={i}
                     url={site}
                     active={i === 0}
                     setActive={() => handleSetActive(i)}

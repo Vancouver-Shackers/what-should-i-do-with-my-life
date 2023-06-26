@@ -7,7 +7,6 @@ import BoredPage from "./bored/BoredPage";
 import HelpPage from "./help/HelpPage";
 import CatPage from "./cat/CatPage";
 import HomePage from "./HomePage";
-import axios from "axios";
 import NotFoundPage from "./NotFoundPage";
 
 enum Theme {
