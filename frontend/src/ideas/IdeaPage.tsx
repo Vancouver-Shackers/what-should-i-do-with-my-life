@@ -41,8 +41,8 @@ const IdeaPage = (props: {
 
   const navigate = useNavigate();
 
-  const createNewIdeasAI = async (theme: string) => {
-    const idea = await fetchIdea(theme);
+  const createNewIdeasAI = async (topic: string) => {
+    const idea = await fetchIdea(topic);
     const ideas = idea.split("\n");
     const ideasArr: IdeaProps[] = ideas.map((a, i) => ({
       name: a.split(". ")[1],
@@ -113,7 +113,7 @@ const IdeaPage = (props: {
                   type="text"
                   ref={input}
                   disabled={!inputActive}
-                  placeholder="Enter theme for an idea. (eg. games)"
+                  placeholder="Enter topic for an idea. (eg. games)"
                 />
               </div>
             </div>
