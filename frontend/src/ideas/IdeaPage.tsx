@@ -45,7 +45,7 @@ const IdeaPage = (props: {
     const idea = await fetchIdea(theme);
     const ideas = idea.split("\n");
     const ideasArr: IdeaProps[] = ideas.map((a, i) => ({
-      name: a,
+      name: a.split(". ")[1],
       id: Date.now() + i,
       content: "Put notes about this idea here",
     }));
@@ -65,15 +65,17 @@ const IdeaPage = (props: {
   const handleCreateNewIdea = async () => {
     if (inputActive && expand && input.current) {
       createNewIdeasAI(input.current.value);
+      alert("please wait for the ai to think of ideas :D");
+    } else {
+      props.setIdeas([
+        {
+          name: "idea",
+          content: "Put notes about this idea here",
+          id: Date.now(),
+        },
+        ...props.ideas,
+      ]);
     }
-    props.setIdeas([
-      {
-        name: "idea",
-        content: "Put notes about this idea here",
-        id: Date.now(),
-      },
-      ...props.ideas,
-    ]);
   };
 
   return (

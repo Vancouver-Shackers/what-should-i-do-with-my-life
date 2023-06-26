@@ -1,6 +1,9 @@
 import axios from "axios";
 
-const url = "http://localhost:4000";
+const url =
+  process.env.NODE_ENV === "production"
+    ? "https://nycrat.pythonanywhere.com"
+    : "http://localhost:4000";
 
 export const fetchIdea = async (theme: string): Promise<string> => {
   const res = await axios
