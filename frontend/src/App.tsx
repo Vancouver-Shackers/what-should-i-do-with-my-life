@@ -8,6 +8,7 @@ import HelpPage from "./help/HelpPage";
 import CatPage from "./cat/CatPage";
 import HomePage from "./HomePage";
 import axios from "axios";
+import NotFoundPage from "./NotFoundPage";
 
 enum Theme {
   dark = "dark",
@@ -65,6 +66,7 @@ const App = () => {
           <Route path="/bored" element={<BoredPage />} />
           <Route path="/help" element={<HelpPage />} />
           <Route path="/cat" element={<CatPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
     </div>
