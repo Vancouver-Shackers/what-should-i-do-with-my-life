@@ -69,7 +69,7 @@ body,
 
       transition: text-decoration-color 0.15s ease-in, background 0.2s ease,
         color 0.2s ease, text-shadow 0.2s ease;
-      text-shadow: transparentize($fg, 0.2) 0 0 8px;
+
       &:hover {
         text-decoration-color: $fg;
       }
@@ -91,7 +91,6 @@ body,
       user-select: none;
       cursor: default;
 
-      text-shadow: transparentize($fg, 0.5) 0 0 8px;
       transition: background 0.2s ease, color 0.2s ease, text-shadow 0.2s ease;
     }
 
@@ -119,7 +118,6 @@ body,
 
     .nav-thing {
       font-size: 3rem;
-      text-shadow: $fg 0 0 10px;
       text-align: center;
       line-height: 50vh;
       background-color: transparentize($bg, 0.4);
@@ -143,6 +141,8 @@ body,
     }
 
     .idea-list-box {
+      transition: box-shadow 0.2s ease;
+      background-color: $fg2;
       padding: 3px;
       width: 60%;
       border-radius: 10px;
@@ -221,6 +221,9 @@ body,
           }
         }
       }
+      .expand {
+        padding-right: 10px;
+      }
     }
 
     .login-page {
@@ -298,6 +301,24 @@ body,
     ::-webkit-scrollbar-thumb:hover {
       background: #555555;
     }
+  }
+}
+
+.dark {
+  .header-title {
+    text-shadow: transparentize(#fff, 0.2) 0 0 8px;
+  }
+  .title {
+    text-shadow: transparentize(#fff, 0.5) 0 0 8px;
+  }
+  .nav-thing {
+    text-shadow: #fff 0 0 10px;
+  }
+}
+
+.light {
+  .idea-list-box {
+    box-shadow: #000000bf 0 0 6px;
   }
 }
 

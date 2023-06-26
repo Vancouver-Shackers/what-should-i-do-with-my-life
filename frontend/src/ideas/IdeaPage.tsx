@@ -96,7 +96,7 @@ const IdeaPage = (props: {
             className="material-symbols-outlined expand"
             onClick={() => setExpand(!expand)}
           >
-            {expand ? "expand_less" : "expand_more"}
+            menu
           </span>
           {expand && (
             <div>
