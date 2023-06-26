@@ -76,15 +76,15 @@ body,
         text-decoration-color: $fg;
       }
       @media only screen and (max-width: $breakpoint-phone) {
-        font-size: 1.55rem;
+        font-size: calc(0.55rem + 4vw);
         padding-bottom: 10px;
       }
     }
 
     .title {
       position: absolute;
-      top: 50%;
-      left: 50%;
+      top: 50vh;
+      left: 50vw;
       transform: translate(-50%, -50%);
       text-align: center;
       margin: 0;
@@ -104,6 +104,7 @@ body,
       }
       @media only screen and (max-width: $breakpoint-phone) {
         font-size: 2.75rem;
+        width: 80vw;
       }
     }
 
@@ -145,8 +146,10 @@ body,
 
     .theme-button {
       position: absolute;
-      bottom: 5px;
-      right: 5px;
+      // bottom: 5px;
+      // right: 5px;
+      top: calc(100vh - 30px);
+      left: calc(100vw - 100px);
 
       border: 1px solid $fg3;
       border-radius: 99px;
@@ -191,7 +194,7 @@ body,
       h2 {
         display: inline;
         margin: 0;
-        font-size: calc(1.25rem + 1vw);
+        font-size: calc(1.25rem + 0.5vw);
         @media only screen and (max-width: $breakpoint-phone) {
           font-size: 1.25rem;
         }
@@ -201,7 +204,8 @@ body,
       }
       .expand {
         float: right;
-        font-size: 2.75rem;
+        // font-size: 2.75rem;
+        font-size: calc(1.75rem + 1vw);
       }
       textarea {
         width: 100%;
@@ -222,7 +226,8 @@ body,
       display: grid;
       grid-template-columns: 8fr 1fr;
       h2 {
-        font-size: 2.25rem;
+        font-size: calc(1.5rem + 1vw);
+        // font-size: 2.25rem;
       }
       span {
         &:nth-of-type(2) {
