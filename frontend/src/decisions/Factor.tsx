@@ -6,6 +6,7 @@ import { CSSProperties } from "react";
 export interface FactorProps {
   value: string;
   setValue?: (value: string) => void;
+  delete?: () => void;
   id: UniqueIdentifier;
 }
 
@@ -27,25 +28,24 @@ const Factor = (props: FactorProps) => {
   };
 
   return (
-    <li
-      ref={setNodeRef}
-      style={style}
-      {...attributes}
-      {...listeners}
-      contentEditable
-      suppressContentEditableWarning
+    <li ref={setNodeRef} style={style} {...attributes} {...listeners}>
+      <span
+        contentEditable
+        suppressContentEditableWarning
         onBlur={(e) => {
           const newValue = e.currentTarget.textContent;
           if (newValue && newValue !== props.value) {
             if (props.setValue) {
               props.setValue(newValue);
             }
-
           }
-          }
-      }
-    >
-      {props.value}
+        }}
+      >
+        {props.value}
+      </span>
+      <span className="material-symbols-outlined" onClick={props.delete}>
+        close
+      </span>
     </li>
   );
 };

@@ -4,7 +4,7 @@ import { IdeaProps } from "./ideas/Idea";
 import IdeaPage from "./ideas/IdeaPage";
 import LoginPage from "./LoginPage";
 import BoredPage from "./bored/BoredPage";
-import DecisionsPage from "./decisions/DecisionsPage";
+import DecisionsPage, { Decision } from "./decisions/DecisionsPage";
 import CatPage from "./cat/CatPage";
 import HomePage from "./HomePage";
 import NotFoundPage from "./NotFoundPage";
@@ -33,20 +33,41 @@ const getIdeas = (): IdeaProps[] => {
   return [];
 };
 
-const getFactors = (name: string): FactorProps[] => {
-  const factorString = window.localStorage.getItem(name);
-  if (factorString) {
-    const factors: FactorProps[] = JSON.parse(factorString);
-    return factors;
+/* const getFactors = (name: string): FactorProps[] => { */
+/*   const factorString = window.localStorage.getItem(name); */
+/*   if (factorString) { */
+/*     const factors: FactorProps[] = JSON.parse(factorString); */
+/*     return factors; */
+/*   } */
+/*   return []; */
+/* }; */
+
+const getDecisions = (): Decision[] => {
+  const decisionString = window.localStorage.getItem("decisions");
+  if (decisionString) {
+    const decisions: Decision[] = JSON.parse(decisionString);
+    if (decisions.length !== 0) {
+      return decisions;
+    }
   }
-  return [];
+  return [
+    {
+      option1: "ha",
+      option2: "ha",
+      pros1: [],
+      cons1: [],
+      pros2: [],
+      cons2: [],
+    },
+  ];
 };
 
 const App = () => {
   const [theme, setTheme] = useState(getTheme());
   const [ideas, setIdeas] = useState<IdeaProps[]>(getIdeas());
-  const [pros1, setPros1] = useState<FactorProps[]>(getFactors("pros1"));
-  const [cons1, setCons1] = useState<FactorProps[]>(getFactors("cons1"));
+  const [decisions, setDecisions] = useState<Decision[]>(getDecisions());
+  /* const [pros1, setPros1] = useState<FactorProps[]>(getFactors("pros1")); */
+  /* const [cons1, setCons1] = useState<FactorProps[]>(getFactors("cons1")); */
 
   useEffect(() => {
     window.localStorage.setItem("theme", theme);
@@ -57,12 +78,8 @@ const App = () => {
   }, [ideas]);
 
   useEffect(() => {
-    window.localStorage.setItem("pros1", JSON.stringify(pros1));
-  }, [pros1]);
-
-  useEffect(() => {
-    window.localStorage.setItem("cons1", JSON.stringify(cons1));
-  }, [cons1]);
+    window.localStorage.setItem("decisions", JSON.stringify(decisions));
+  }, [decisions]);
 
   return (
     <div className={theme}>
@@ -87,10 +104,8 @@ const App = () => {
             path="/decisions"
             element={
               <DecisionsPage
-                pros1={pros1}
-                cons1={cons1}
-                setPros1={setPros1}
-                setCons1={setCons1}
+                decisions={decisions}
+                setDecisions={setDecisions}
               />
             }
           />

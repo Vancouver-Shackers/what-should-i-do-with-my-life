@@ -39,7 +39,7 @@ export const fetchDecision = async (
     console.log(res);
     console.log(res.data);
     const data: string = res.data;
-    const [optionFactors1, optionFactors2] = data.split("---\n");
+    const [optionFactors1, optionFactors2] = data.split("\n---\n");
 
     const [prosHa1, consHa1] = optionFactors1.split("\n\n");
     const [prosHa2, consHa2] = optionFactors2.split("\n\n");

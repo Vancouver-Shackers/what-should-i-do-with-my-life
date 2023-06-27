@@ -365,9 +365,9 @@ body,
       .pros-cons {
         margin: auto;
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 0.1fr 1fr 1fr;
         height: 80%;
-        width: 80%;
+        width: 95%;
 
         .list {
           transition: background-color 0.2s ease, color 0.2s ease;
@@ -379,11 +379,19 @@ body,
           grid-template-rows: 8% 92%;
 
           ul {
+            touch-action: none;
             overflow-y: auto;
 
             li {
               height: 8%;
-              font-size: 1.5rem;
+              font-size: calc(1.2rem + 0.2vw);
+              span {
+                &:nth-of-type(2) {
+                  float: right;
+                  padding-right: 5px;
+                  cursor: pointer;
+                }
+              }
             }
           }
 
