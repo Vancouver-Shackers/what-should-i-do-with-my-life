@@ -1,6 +1,6 @@
 # What should I do with my life?
 
-<img src="https://github.com/vancouver-shackers/what-should-i-do-with-my-life/blob/main/logo.png?raw=true" alt="logo" style="width:200px;"/>
+<img src="https://github.com/vancouver-shackers/what-should-i-do-with-my-life/blob/main/frontend/public/logo.png?raw=true" alt="logo" style="width:200px;"/>
 
 ## Inspiration
 
