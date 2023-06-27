@@ -143,12 +143,19 @@ const DecisionsPage = (props: {
         <span
           className="material-symbols-outlined delete-thing"
           onClick={() => {
-            if (
-              window.confirm("Are you sure you want to delete this decision?")
-            ) {
-              let newDecisions = [...decisions];
-              newDecisions.splice(index, 1);
-              setDecisions(newDecisions);
+            if (decisions.length === 1) {
+              window.alert("You cannot delete your only decision");
+            } else {
+              if (
+                window.confirm("Are you sure you want to delete this decision?")
+              ) {
+                if (index === decisions.length - 1) {
+                  setIndex(index - 1);
+                }
+                let newDecisions = [...decisions];
+                newDecisions.splice(index, 1);
+                setDecisions(newDecisions);
+              }
             }
           }}
         >
