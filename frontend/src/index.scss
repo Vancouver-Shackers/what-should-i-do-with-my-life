@@ -26,12 +26,12 @@ body,
       overflow: hidden;
       background: linear-gradient(
         -45deg,
-        #ee9448,
-        #f4327d,
-        #35b9de,
-        #ccdc66,
-        #23e190,
-        #80805b,
+        #1a94e6,
+        #fe307d,
+        #35d9ed,
+        #ccdc72,
+        #233391,
+        #b33c75,
         #334d80
       );
       background-size: 800% 800%;
@@ -55,7 +55,7 @@ body,
       height: 100vh;
 
       background-color: transparentize($bg, 0.2);
-      transition: background 0.5s ease;
+      transition: background 0.2s ease;
     }
 
     .header-title {
@@ -111,7 +111,7 @@ body,
     button {
       background-color: $bg;
       color: $fg;
-      transition: all 0.2s ease;
+      transition: background-color 0.2s ease, color 0.2s ease;
     }
 
     .home-page {
@@ -369,15 +369,39 @@ body,
         height: 80%;
         width: 80%;
 
-        div {
+        .list {
           transition: background-color 0.2s ease, color 0.2s ease;
           background-color: darken($fg2, 5%);
           border: 1px solid darken($fg3, 10%);
 
-          h3 {
-            margin: 0;
+          display: grid;
+          // grid-template-rows: 1fr 12fr;
+          grid-template-rows: 8% 92%;
+
+          ul {
+            overflow-y: auto;
+
+            li {
+              height: 8%;
+              font-size: 1.5rem;
+            }
+          }
+
+          div {
+            display: grid;
+            grid-template-columns: 9fr 1fr;
+            border-bottom: 1px solid $fg3;
             padding: 8px;
-            font-size: 1.55rem;
+
+            h3 {
+              margin: 0;
+              font-size: 1.55rem;
+            }
+            span {
+              text-align: right;
+              font-size: 2.25rem;
+              cursor: pointer;
+            }
           }
         }
       }
