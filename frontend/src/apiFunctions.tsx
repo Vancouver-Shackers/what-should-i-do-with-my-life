@@ -18,3 +18,10 @@ export const fetchIdea = async (topic: string): Promise<string> => {
   }
   return "";
 };
+
+export const fetchDecision = async (
+  option1: string,
+  option2: string
+): Promise<string> => {
+  return "ha";
+};

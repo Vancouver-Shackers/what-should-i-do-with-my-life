@@ -313,6 +313,76 @@ body,
       }
     }
 
+    .decisions-page {
+      transition: background-color 0.2s ease, color 0.2s ease;
+      background-color: $fg2;
+      border-radius: 10px;
+      border: 1px solid $fg3;
+
+      width: 85vw;
+      height: 87vh;
+      margin: auto;
+
+      .question-thing {
+        text-align: center;
+        font-size: 1.75rem;
+        padding: 20px;
+        input {
+          font-size: 1.75rem;
+          transition: all 0.2s ease;
+          background-color: $fg2;
+          color: $fg;
+          text-align: center;
+        }
+      }
+
+      .decide-button {
+        display: block;
+        margin: auto;
+        margin-bottom: 20px;
+
+        border-radius: 5px;
+        border: 1px solid $fg;
+        padding: 2px 6px;
+        font-size: 2rem;
+
+        transition: background-color 0.2s ease, border 0.2s ease;
+        background-color: lighten($fg2, 8%);
+        user-select: none;
+
+        &:enabled {
+          cursor: pointer;
+          &:hover {
+            background-color: darken($fg2, 3%);
+          }
+        }
+        &:disabled {
+          border: 1px solid $bg;
+          background-color: darken($fg2, 5%);
+        }
+      }
+
+      .pros-cons {
+        margin: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        height: 80%;
+        width: 80%;
+
+        div {
+          transition: background-color 0.2s ease, color 0.2s ease;
+          background-color: darken($fg2, 5%);
+          border: 1px solid darken($fg3, 10%);
+
+          h3 {
+            margin: 0;
+            padding: 8px;
+            font-size: 1.55rem;
+          }
+        }
+      }
+    }
+
     .cat-video {
       width: 100vw;
     }
@@ -346,6 +416,9 @@ body,
 
 .light {
   .idea-list-box {
+    box-shadow: #000000bf 0 0 6px;
+  }
+  .decisions-page {
     box-shadow: #000000bf 0 0 6px;
   }
 }

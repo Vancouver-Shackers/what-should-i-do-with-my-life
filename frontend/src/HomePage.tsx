@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <div className="home-page">
       <div className="nav-stuff">
-        {["Bored", "Ideas", "Help", "Cat"].map((a, i) => (
+        {["Bored", "Ideas", "Decisions", "Cat"].map((a, i) => (
           <div
             key={i}
             className="nav-thing"

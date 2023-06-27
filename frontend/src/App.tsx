@@ -4,7 +4,7 @@ import { IdeaProps } from "./ideas/Idea";
 import IdeaPage from "./ideas/IdeaPage";
 import LoginPage from "./LoginPage";
 import BoredPage from "./bored/BoredPage";
-import HelpPage from "./help/HelpPage";
+import DecisionsPage from "./decisions/DecisionsPage";
 import CatPage from "./cat/CatPage";
 import HomePage from "./HomePage";
 import NotFoundPage from "./NotFoundPage";
@@ -63,7 +63,7 @@ const App = () => {
           />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/bored" element={<BoredPage />} />
-          <Route path="/help" element={<HelpPage />} />
+          <Route path="/decisions" element={<DecisionsPage />} />
           <Route path="/cat" element={<CatPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
