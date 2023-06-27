@@ -42,9 +42,13 @@ export const fetchDecision = async (
     const [optionFactors1, optionFactors2] = data.split("\n---\n");
 
     const [prosHa1, consHa1] = optionFactors1.split("\n\n");
-    const [prosHa2, consHa2] = optionFactors2.split("\n\n");
+    let [prosHa2, consHa2] = optionFactors2.split("\n\n");
 
     const id = Date.now();
+
+    if (consHa2.charAt(consHa2.length - 1) === "\n") {
+      consHa2 = consHa1.substr(0, consHa2.length - 1);
+    }
 
     const pros1: FactorProps[] = prosHa1
       .split("\n")
