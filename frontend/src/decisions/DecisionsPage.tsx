@@ -14,6 +14,7 @@ import {
 } from "@dnd-kit/sortable";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { fetchDecision } from "../apiFunctions";
 import Factor, { FactorProps } from "./Factor";
 
 const DecisionsPage = (props: {
@@ -70,9 +71,12 @@ const DecisionsPage = (props: {
         <button
           className="decide-button"
           disabled={!(option1 !== "" && option2 !== "")}
-          onClick={() => {
-            console.log(option1);
-            console.log(option2);
+          onClick={async () => {
+            alert("WAIT FOR THE AI TO THINK OF PROS AND CONS");
+            const { newPros1, newCons1, newPros2, newCons2 } =
+              await fetchDecision(option1, option2);
+            setPros1([...newPros1, ...pros1]);
+            setCons1([...newCons1, ...cons1]);
           }}
         >
           Decide

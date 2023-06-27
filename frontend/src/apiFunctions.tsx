@@ -1,4 +1,5 @@
 import axios from "axios";
+import { FactorProps } from "./decisions/Factor";
 
 const url =
   process.env.NODE_ENV === "production"
@@ -22,6 +23,53 @@ export const fetchIdea = async (topic: string): Promise<string> => {
 export const fetchDecision = async (
   option1: string,
   option2: string
-): Promise<string> => {
-  return "ha";
+): Promise<{
+  newPros1: FactorProps[];
+  newCons1: FactorProps[];
+  newPros2: FactorProps[];
+  newCons2: FactorProps[];
+}> => {
+  const res = await axios
+    .get(`${url}/decide?choice1="${option1}"&choice2="${option2}"`)
+    .catch((err) => {
+      console.error(err);
+    });
+
+  if (res) {
+    console.log(res);
+    console.log(res.data);
+    const data: string = res.data;
+    const [optionFactors1, optionFactors2] = data.split("---\n");
+
+    const [prosHa1, consHa1] = optionFactors1.split("\n\n");
+    const [prosHa2, consHa2] = optionFactors2.split("\n\n");
+
+    const id = Date.now();
+
+    const pros1: FactorProps[] = prosHa1
+      .split("\n")
+      .map((value, i) => ({ value: value.substr(3), id: id - i }));
+    const cons1: FactorProps[] = consHa1
+      .split("\n")
+      .map((value, i) => ({ value: value.substr(3), id: id - 5 - i }));
+    const pros2: FactorProps[] = prosHa2
+      .split("\n")
+      .map((value, i) => ({ value: value.substr(3), id: id - 10 - i }));
+    const cons2: FactorProps[] = consHa2
+      .split("\n")
+      .map((value, i) => ({ value: value.substr(3), id: id - 15 - i }));
+
+    return {
+      newPros1: pros1,
+      newCons2: cons2,
+      newPros2: pros2,
+      newCons1: cons1,
+    };
+  }
+  return {
+    newPros1: [],
+    newCons2: [],
+    newPros2: [],
+    newCons1: [],
+  };
 };
