@@ -52,8 +52,9 @@ const getDecisions = (): Decision[] => {
   }
   return [
     {
-      option1: "ha",
-      option2: "ha",
+      id: Date.now(),
+      option1: "Cats",
+      option2: "Dogs",
       pros1: [],
       cons1: [],
       pros2: [],
@@ -62,10 +63,19 @@ const getDecisions = (): Decision[] => {
   ];
 };
 
+const getIndex = (): number => {
+  const indexString = window.localStorage.getItem("index");
+  if (indexString) {
+    return parseInt(indexString);
+  }
+  return 0;
+}
+
 const App = () => {
   const [theme, setTheme] = useState(getTheme());
   const [ideas, setIdeas] = useState<IdeaProps[]>(getIdeas());
   const [decisions, setDecisions] = useState<Decision[]>(getDecisions());
+  const [index, setIndex] = useState(getIndex());
   /* const [pros1, setPros1] = useState<FactorProps[]>(getFactors("pros1")); */
   /* const [cons1, setCons1] = useState<FactorProps[]>(getFactors("cons1")); */
 
@@ -80,6 +90,10 @@ const App = () => {
   useEffect(() => {
     window.localStorage.setItem("decisions", JSON.stringify(decisions));
   }, [decisions]);
+
+  useEffect(() => {
+    window.localStorage.setItem("index", JSON.stringify(index));
+  }, [index]);
 
   return (
     <div className={theme}>
@@ -106,6 +120,8 @@ const App = () => {
               <DecisionsPage
                 decisions={decisions}
                 setDecisions={setDecisions}
+                index={index}
+                setIndex={setIndex}
               />
             }
           />

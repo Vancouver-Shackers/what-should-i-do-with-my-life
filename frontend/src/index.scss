@@ -14,6 +14,19 @@ body,
   -moz-osx-font-smoothing: grayscale;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
 @mixin theme($theme-name, $bg, $fg, $fg2, $fg3) {
   .#{$theme-name} {
     height: 100%;
@@ -150,6 +163,7 @@ body,
       // right: 5px;
       top: calc(100vh - 30px);
       left: calc(100vw - 100px);
+      white-space: nowrap;
 
       border: 1px solid $fg3;
       border-radius: 99px;
@@ -314,20 +328,26 @@ body,
     }
 
     .decisions-page {
+      position: relative;
       transition: background-color 0.2s ease, color 0.2s ease;
       background-color: $fg2;
       border-radius: 10px;
       border: 1px solid $fg3;
 
-      width: 85vw;
+      width: 88vw;
       height: 87vh;
       margin: auto;
+
+      display: grid;
+      grid-template-rows: 0.7fr 0.4fr 8fr 0.1fr 0.3fr;
 
       .question-thing {
         text-align: center;
         font-size: 1.75rem;
-        padding: 20px;
+        padding: 15px;
         input {
+          border-radius: 10px;
+          font-weight: bold;
           font-size: 1.75rem;
           transition: all 0.2s ease;
           background-color: $fg2;
@@ -339,14 +359,15 @@ body,
       .decide-button {
         display: block;
         margin: auto;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
 
         border-radius: 5px;
-        border: 1px solid $fg;
+        border: 1px solid $fg3;
         padding: 2px 6px;
         font-size: 2rem;
 
-        transition: background-color 0.2s ease, border 0.2s ease;
+        transition: background-color 0.2s ease, border 0.2s ease,
+          color 0.2s ease, text-shadow 0.2s ease;
         background-color: lighten($fg2, 8%);
         user-select: none;
 
@@ -366,7 +387,7 @@ body,
         margin: auto;
         display: grid;
         grid-template-columns: 1fr 1fr 0.1fr 1fr 1fr;
-        height: 80%;
+        height: 100%;
         width: 95%;
 
         .list {
@@ -413,23 +434,58 @@ body,
           }
         }
       }
+
+      .decisions-list::-webkit-scrollbar {
+        height: 5px;
+      }
+
+      .decisions-list {
+        overflow-x: auto;
+        overflow-y: hidden;
+        display: flex;
+        div {
+          border-radius: 10px;
+          font-size: 1.2rem;
+          cursor: pointer;
+          padding: 0 8px;
+          text-align: center;
+          display: inline-block;
+          white-space: nowrap;
+
+          margin: 0 3px;
+
+          background-color: darken($fg2, 5%);
+
+          transition: background-color 0.2s ease, color 0.2s ease;
+
+          &:hover {
+            background-color: lighten($fg2, 5%);
+          }
+        }
+
+        .active {
+          background-color: lighten($fg2, 8%);
+        }
+
+        span {
+          cursor: pointer;
+        }
+      }
+      .delete-thing {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        font-size: 1.75rem;
+        transition: font-size 0.2s ease;
+        &:hover {
+          font-size: 2rem;
+        }
+      }
     }
 
     .cat-video {
       width: 100vw;
-    }
-
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: #888888;
-      border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: #555555;
     }
   }
 }
@@ -442,6 +498,9 @@ body,
     text-shadow: transparentize(#fff, 0.5) 0 0 8px;
   }
   .nav-thing {
+    text-shadow: #fff 0 0 10px;
+  }
+  .decide-button {
     text-shadow: #fff 0 0 10px;
   }
 }

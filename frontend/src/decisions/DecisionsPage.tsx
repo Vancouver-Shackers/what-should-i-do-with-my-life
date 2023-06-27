@@ -1,10 +1,13 @@
+import { UniqueIdentifier } from "@dnd-kit/core";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchDecision } from "../apiFunctions";
+import DecisionsList from "./DecisionsList";
 import { FactorProps } from "./Factor";
 import FactorList from "./FactorList";
 
 export interface Decision {
+  id: UniqueIdentifier;
   option1: string;
   option2: string;
   pros1: FactorProps[];
@@ -16,15 +19,25 @@ export interface Decision {
 const DecisionsPage = (props: {
   decisions: Decision[];
   setDecisions: (decisions: Decision[]) => void;
+  index: number;
+  setIndex: (i: number) => void;
 }) => {
-  const { decisions, setDecisions } = props;
+  const { decisions, setDecisions, index, setIndex } = props;
   console.log(decisions);
 
   const navigate = useNavigate();
-  const [index, setIndex] = useState(0);
 
-  const [option1, setOption1] = useState("");
-  const [option2, setOption2] = useState("");
+  const setOption1 = (option: string) => {
+    let newDecisions = [...decisions];
+    newDecisions[index].option1 = option;
+    setDecisions(newDecisions);
+  };
+
+  const setOption2 = (option: string) => {
+    let newDecisions = [...decisions];
+    newDecisions[index].option2 = option;
+    setDecisions(newDecisions);
+  };
 
   return (
     <div className="background-dimmer">
@@ -36,21 +49,29 @@ const DecisionsPage = (props: {
           <input
             type="text"
             onChange={(e) => setOption1(e.currentTarget.value)}
+            value={props.decisions[index].option1}
           />{" "}
           or{" "}
           <input
             type="text"
             onChange={(e) => setOption2(e.currentTarget.value)}
+            value={props.decisions[index].option2}
           />
         </div>
-
         <button
           className="decide-button"
-          disabled={!(option1 !== "" && option2 !== "")}
+          disabled={
+            !(
+              decisions[index].option1 !== "" && decisions[index].option2 !== ""
+            )
+          }
           onClick={async () => {
             alert("WAIT FOR THE AI TO THINK OF PROS AND CONS");
             const { newPros1, newCons1, newPros2, newCons2 } =
-              await fetchDecision(option1, option2);
+              await fetchDecision(
+                decisions[index].option1,
+                decisions[index].option2
+              );
 
             let newDecisions = [...decisions];
             newDecisions[index].pros1 = [
@@ -75,7 +96,6 @@ const DecisionsPage = (props: {
         >
           Generate Pros and Cons
         </button>
-
         <div className="pros-cons">
           <FactorList
             factors={decisions[index].pros1}
@@ -113,6 +133,27 @@ const DecisionsPage = (props: {
             }}
           />
         </div>
+        <div></div>
+        <DecisionsList
+          decisions={decisions}
+          setDecisions={setDecisions}
+          index={index}
+          setIndex={setIndex}
+        />
+        <span
+          className="material-symbols-outlined delete-thing"
+          onClick={() => {
+            if (
+              window.confirm("Are you sure you want to delete this decision?")
+            ) {
+              let newDecisions = [...decisions];
+              newDecisions.splice(index, 1);
+              setDecisions(newDecisions);
+            }
+          }}
+        >
+          delete
+        </span>
       </div>
     </div>
   );
