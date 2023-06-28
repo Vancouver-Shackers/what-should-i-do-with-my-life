@@ -92,7 +92,7 @@ def decide():
     cons1 = thing[0][thing[0].find("Cons:\n")+6:-1]
 
     pros2 = thing[1][thing[1].find("Pros:\n")+6:thing[1].find("\n\n")]
-    cons2 = thing[1][thing[1].find("Cons:\n")+6:-1]
+    cons2 = thing[1][thing[1].find("Cons:\n")+6:]
 
     return pros1 + "\n\n" + cons1 + "---\n" + pros2 + "\n\n" + cons2
 

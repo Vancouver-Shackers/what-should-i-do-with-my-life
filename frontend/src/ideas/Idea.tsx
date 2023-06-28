@@ -80,7 +80,6 @@ const Idea = (props: IdeaProps) => {
               const newContent = e.currentTarget.textContent;
               if (newContent && newContent !== props.content) {
                 if (props.setContent) {
-                  console.log(newContent);
                   props.setContent(newContent);
                 }
               }

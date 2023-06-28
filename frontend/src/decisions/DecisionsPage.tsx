@@ -23,7 +23,6 @@ const DecisionsPage = (props: {
   setIndex: (i: number) => void;
 }) => {
   const { decisions, setDecisions, index, setIndex } = props;
-  console.log(decisions);
 
   const navigate = useNavigate();
 

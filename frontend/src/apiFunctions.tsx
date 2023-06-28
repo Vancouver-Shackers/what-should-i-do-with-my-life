@@ -14,7 +14,6 @@ export const fetchIdea = async (topic: string): Promise<string> => {
     });
 
   if (res) {
-    console.log(res.data);
     return res.data;
   }
   return "";
@@ -36,8 +35,6 @@ export const fetchDecision = async (
     });
 
   if (res) {
-    console.log(res);
-    console.log(res.data);
     const data: string = res.data;
     const [optionFactors1, optionFactors2] = data.split("\n---\n");
 

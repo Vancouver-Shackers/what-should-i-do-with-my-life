@@ -44,7 +44,6 @@ const FactorList = (props: {
         <span
           className="material-symbols-outlined"
           onClick={() => {
-            /* console.log(setFactors); */
             setFactors([
               { value: pros ? "new pro" : "new con", id: Date.now() },
               ...factors,

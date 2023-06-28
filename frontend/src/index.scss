@@ -404,7 +404,7 @@ body,
             overflow-y: auto;
 
             li {
-              height: 8%;
+              min-height: 8%;
               font-size: calc(1.2rem + 0.2vw);
               span {
                 &:nth-of-type(2) {
